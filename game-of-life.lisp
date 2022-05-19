@@ -95,7 +95,7 @@
 
 (defun get-pattern-name-from-argv ()
   (let* ((args sb-ext:*posix-argv*)
-         (num-args (length args))
+         (tnum-args (length args))
          (default-pattern "TOAD"))
     (if (> num-args 1)
         (sanitize-name (second args))
@@ -169,6 +169,7 @@
                        (char= char #\.))
              (push line names))))))))
 
+; I also run run() to here 
 
 (defun run ()
   (init-curses)
