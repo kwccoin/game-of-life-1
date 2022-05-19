@@ -1,7 +1,9 @@
+; rlwrap sbcl --load "game-of-life.lisp" all 30
+
 (ql:quickload 'cl-charms)
 
 (defpackage #:game-of-life
-  (:use #:cl #:cl-charms)
+  (:use #:cl #:cl-charms/low-level) ;;; add /low-level
   (:nicknames #:gol))
 
 (in-package #:gol)
@@ -56,14 +58,6 @@
         0
         1)))
 
-(defun run ()
-  (init-curses)
-  (set-num-timesteps)
-  (let* ((name (get-pattern-name-from-argv)))
-    (if (string-equal name "all")
-        (mapc #'run-pattern (get-bag-of-patterns))
-        (run-pattern name)))
-  (exit-life))
 
 (defun run-pattern (name)
   (let ((pattern (read-pattern-from-file name)))
@@ -174,5 +168,15 @@
                        (char= char  #\*)
                        (char= char #\.))
              (push line names))))))))
+
+
+(defun run ()
+  (init-curses)
+  (set-num-timesteps)
+  (let* ((name (get-pattern-name-from-argv)))
+    (if (string-equal name "all")
+        (mapc #'run-pattern (get-bag-of-patterns))
+        (run-pattern name)))
+  (exit-life))
 
 (run)
