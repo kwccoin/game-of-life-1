@@ -73,3 +73,6 @@ By replacing the pattern name with the secret keyword `all` a loop is started wh
 # I suspect the p meant period
 
 see https://web.archive.org/web/20160401062315/http://www.argentum.freeserve.co.uk/lex.htm
+
+try `wget -p -k -r --no-parent https://web.archive.org/web/20160401062315/http://www.argentum.freeserve.co.uk/lex.htm`
+
